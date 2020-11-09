@@ -47,7 +47,7 @@
 
 # # Librerías
 
-# In[300]:
+# In[15]:
 
 
 import numpy as np
@@ -70,7 +70,7 @@ import matplotlib.pyplot as plt
 # 
 # * Clase **Compuesto** define el nombre del ingrediente activo presente en el compuesto
 
-# In[301]:
+# In[16]:
 
 
 class Combinacion:
@@ -117,7 +117,7 @@ class Combinacion:
 # 
 # La residualidad contempla inicialmente un comportamiento lineal, en el cual se evidencia que entre más tiempo el pesticida se encuentre en el ecosistema más probabilidad tiene de contaminar insectos melíferos. De igual forma a medida que el estudio avance  puede ser asignada una formula mucho más apropiada para dicho comportamiento ya que la residualidad esta estrictamente ligada a las características de medio ambiente.
 
-# In[302]:
+# In[17]:
 
 
 #Arreglos que representan los pesos de cada una de las características de los pesticidas
@@ -149,7 +149,7 @@ for i in range(1,90):
     residualidad[i] = i
 
 
-# ## Aptitud
+# ## Peso
 # Para este caso, el costo de una solución es el calculo de la toxicidad del mismo que esta dado por la combinación de la concentración de un ingrediente activo específico, la forma de exposición, el tipo de aplicación y la residualidad como se menciono anteriormente y dicha aptitud esta dada por la formula:
 # 
 # >$Aptitud=RC+[\sum_{i=1}^{N} RCI(Valor_{i})]+[\sum_{i=1}^{N} RFE(Valor_{i})]+[\sum_{i=1}^{N} RFA(Valor_{i})]+[\sum_{i=1}^{N} RTR(Valor_{i})]$
@@ -170,7 +170,7 @@ for i in range(1,90):
 
 # Definimos la función para calcular el costo para todas las posibles soluciones, está formula fue construida con base a lo expuesto anteriormente. La función hace el sumatorio de puntos de riesgo acumulados por cada uno de los individuos y buscando los individuos que tengan menor temperatura (toxicidad potencial).
 
-# In[303]:
+# In[18]:
 
 
 class Costo:
@@ -206,7 +206,7 @@ def costando(poblacion, T):
 
 # ## Funciones
 
-# In[304]:
+# In[19]:
 
 
 #Creamos la solcución inicial de forma aleatoría.
@@ -243,7 +243,7 @@ def vecino(solucion):
 # ## Algoritmo de enfriamiento simulado
 # Hemos un bucle bajando la temperatura.
 
-# In[305]:
+# In[22]:
 
 
 def algoritmo(n_poblaciones, n_vecinos, pasos_enfrimiento):
@@ -298,13 +298,15 @@ def algoritmo(n_poblaciones, n_vecinos, pasos_enfrimiento):
     plt.plot(mejorCosto, label="Mejores")
     plt.fill_between(range(len(costoMedio)), costoMedio-desviacionCosto, costoMedio+desviacionCosto, color="yellow", alpha=0.2)
     plt.legend()
+    plt.ylabel('Costo')
+    plt.xlabel('Iteraciones')
     plt.title("Best Costs: %.3f"%costoMinimo)
 
 
 # ## Pruebas
 # Realizamos las pruebas del algoritmo de enfrimiento simulado previamente programado.
 
-# In[306]:
+# In[23]:
 
 
 algoritmo(n_poblaciones = 100, n_vecinos=100, pasos_enfrimiento=1000)
@@ -329,39 +331,4 @@ algoritmo(n_poblaciones = 100, n_vecinos=100, pasos_enfrimiento=1000)
 # [8] [Residualidad de un herbicida](https://www.rainbowconosur.com/uy/detalle-de-residualidad-de-un-herbicida-194)
 # 
 # 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+# 
